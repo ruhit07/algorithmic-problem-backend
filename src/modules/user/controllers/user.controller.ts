@@ -8,6 +8,8 @@ export class UserController {
 
   @Post('sorted')
   getSortedUsers(@Body() createUserDto: CreateUserto): { sortedUsers: SortedUserDto[] } {
+    // console.log(createUserDto, 'xxx');
+
     const result = this.usersService.sortUsers(createUserDto);
 
     return { sortedUsers: result };

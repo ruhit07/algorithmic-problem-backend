@@ -15,6 +15,11 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
+
   logger.log(`Application listening on port 4000 in development mode.`);
   await app.listen(4000);
 }
