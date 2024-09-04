@@ -1,5 +1,15 @@
-import { IsString, IsArray, IsEmail, IsNumber, IsNotEmpty, IsDefined, ArrayNotEmpty } from 'class-validator';
+import {
+  IsString,
+  IsArray,
+  IsEmail,
+  IsNumber,
+  IsDefined,
+  ArrayNotEmpty,
+  IsNotEmpty,
+  ValidateNested,
+} from 'class-validator';
 import { TaskDto } from './task.dto';
+import { Type } from 'class-transformer';
 
 export class UserDto {
   @IsNumber()
@@ -17,6 +27,7 @@ export class UserDto {
 
   @IsArray()
   @ArrayNotEmpty()
-  @IsDefined()
+  @Type(() => TaskDto)
+  @ValidateNested({ each: true })
   tasks: TaskDto[];
 }

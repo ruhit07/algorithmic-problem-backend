@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { SortedUserDto, UserDto } from '../dtos';
+import { CreateUserto, SortedUserDto, UserDto } from '../dtos';
 import { TaskStatus } from '../enum/task-status.enum';
 
 @Injectable()
 export class UserService {
-  sortUsers(users: UserDto[]): SortedUserDto[] {
-    return users
+  sortUsers(createUserto: CreateUserto): SortedUserDto[] {
+    return createUserto.users
       .map((user) => {
         const completedTasks = user.tasks.reduce(
           (count, task) => count + (task.status === TaskStatus.COMPLETE ? 1 : 0),
